@@ -42,6 +42,7 @@ public class Exercises {
      */
     public static void exercise3(String message){
         System.out.println(message);
+
         Predicate<Person> bornAfterCondition = person -> person.getBirthDate().isAfter(LocalDate.parse("1999-12-31"));
         List<Person> personListWithBornAfter = storage.findMany(bornAfterCondition);
         personListWithBornAfter.forEach(System.out::println);
@@ -54,7 +55,9 @@ public class Exercises {
      */
     public static void exercise4(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> findOnePredicate = person -> person.getId() == 123;
+        Person theOne = storage.findOne(findOnePredicate);
+        System.out.println("theOne = " + theOne);
 
         System.out.println("----------------------");
 
