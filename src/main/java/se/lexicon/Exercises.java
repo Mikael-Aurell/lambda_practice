@@ -10,6 +10,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static se.lexicon.model.Gender.MALE;
+
 public class Exercises {
 
     private final static DataStorage storage = DataStorage.INSTANCE;
@@ -84,9 +86,12 @@ public class Exercises {
      */
     public static void exercise6(String message){
         System.out.println(message);
-        Predicate<Person> namesStartWithEPredicate = person -> person.getFirstName().startsWith("E");
-        Function<Person, String> personToStringFunction
-        storage.findManyAndMapEachToString()
+
+        Predicate<Person> namesStartWithEAndMalePredicate = person -> person.getFirstName().startsWith("E")
+                && person.getGender() == Gender.MALE;
+        Function<Person, String> personToStringFunction = person -> person.getFirstName() + " " + person.getLastName();
+        List<String> findAllMaleThatStartsWith_E = storage.findManyAndMapEachToString(namesStartWithEAndMalePredicate, personToStringFunction);
+        findAllMaleThatStartsWith_E.forEach(s -> System.out.println(s));
 
         System.out.println("----------------------");
     }
