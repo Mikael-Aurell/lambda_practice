@@ -4,6 +4,7 @@ import se.lexicon.data.DataStorage;
 import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -40,7 +41,9 @@ public class Exercises {
      */
     public static void exercise3(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> bornAfterCondition = person -> person.getBirthDate().isAfter(LocalDate.parse("1999-12-31"));
+        List<Person> personListWithBornAfter = storage.findMany(bornAfterCondition);
+        personListWithBornAfter.forEach(person -> System.out.println(person));
 
         System.out.println("----------------------");
     }
