@@ -6,6 +6,7 @@ import se.lexicon.model.Person;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -69,7 +70,11 @@ public class Exercises {
      */
     public static void exercise5(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> findOnePredicate = person -> person.getId() == 456;
+        Function<Person, String> personToString = person -> "Name: " + person.getFirstName() + " " + person.getLastName() + " born " + person.getBirthDate();
+        String findNisseNilsson = storage.findOneAndMapToString(findOnePredicate, personToString);
+        System.out.println(findNisseNilsson);
+
 
         System.out.println("----------------------");
     }
@@ -79,7 +84,9 @@ public class Exercises {
      */
     public static void exercise6(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> namesStartWithEPredicate = person -> person.getFirstName().startsWith("E");
+        Function<Person, String> personToStringFunction
+        storage.findManyAndMapEachToString()
 
         System.out.println("----------------------");
     }
