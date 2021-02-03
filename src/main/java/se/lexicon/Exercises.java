@@ -7,6 +7,7 @@ import se.lexicon.model.Person;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Exercises {
 
@@ -43,7 +44,7 @@ public class Exercises {
         System.out.println(message);
         Predicate<Person> bornAfterCondition = person -> person.getBirthDate().isAfter(LocalDate.parse("1999-12-31"));
         List<Person> personListWithBornAfter = storage.findMany(bornAfterCondition);
-        personListWithBornAfter.forEach(person -> System.out.println(person));
+        personListWithBornAfter.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
