@@ -132,7 +132,10 @@ public class Exercises {
      */
     public static void exercise9(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> findLastNameContainFirstNamePredicate = person -> person.getLastName().startsWith(person.getFirstName());
+        Consumer<Person> findLastNameContainFirstNameConsumer = person -> System.out.println(person.getFirstName()
+                +" "+person.getLastName());
+        storage.findAndDo(findLastNameContainFirstNamePredicate, findLastNameContainFirstNameConsumer);
 
         System.out.println("----------------------");
     }
