@@ -145,7 +145,10 @@ public class Exercises {
      */
     public static void exercise10(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> personFirstNameIsPalindrome = person -> new StringBuilder(person.getFirstName())
+                .reverse().toString().equalsIgnoreCase(person.getFirstName());
+        Consumer<Person> printer = person -> System.out.println(person.getFirstName() + " " + person.getLastName());
+        storage.findAndDo(personFirstNameIsPalindrome, printer);
 
         System.out.println("----------------------");
     }
