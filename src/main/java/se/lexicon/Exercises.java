@@ -160,6 +160,7 @@ public class Exercises {
     public static void exercise11(String message){
         System.out.println(message);
         Predicate<Person> findPersonFirstNameA = person -> person.getFirstName().startsWith("A");
+        //Comparator<Person> findPersonComparator = (p1, p2) -> p1.getBirthDate().compareTo(p2.getBirthDate());
         Comparator<Person> findPersonComparator = Comparator.comparing(Person::getBirthDate);
         List<Person> findAndSort_findPersonFirstNameASortedBirthdate = storage.findAndSort(findPersonFirstNameA, findPersonComparator);
         findAndSort_findPersonFirstNameASortedBirthdate.forEach(System.out::println);
@@ -173,6 +174,7 @@ public class Exercises {
     public static void exercise12(String message){
         System.out.println(message);
         Predicate<Person> findPersonBefore1950 = person -> person.getBirthDate().isBefore(LocalDate.parse("1950-01-01"));
+
         Comparator<Person> findPersonComparator = Comparator.comparing(Person::getBirthDate).reversed();
         List<Person> findAndSort_findPersonFirstNameASortedBirthdate = storage.findAndSort(findPersonBefore1950, findPersonComparator);
         findAndSort_findPersonFirstNameASortedBirthdate.forEach(System.out::println);
@@ -185,7 +187,10 @@ public class Exercises {
      */
     public static void exercise13(String message){
         System.out.println(message);
-        Comparator<Person> findAllPersonAndSortComparator = Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName).thenComparing(Person::getBirthDate);
+
+         Comparator<Person> findAllPersonAndSortComparator = Comparator.comparing(Person::getLastName)
+                .thenComparing(Person::getFirstName)
+                .thenComparing(Person::getBirthDate);
         List<Person> Sort_FindAllPersons = storage.findAndSort(findAllPersonAndSortComparator);
         Sort_FindAllPersons.forEach(System.out::println);
 
