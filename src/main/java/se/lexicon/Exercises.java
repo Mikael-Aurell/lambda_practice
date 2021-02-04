@@ -6,6 +6,7 @@ import se.lexicon.model.Person;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -158,7 +159,10 @@ public class Exercises {
      */
     public static void exercise11(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> findPersonFirstNameA = person -> person.getFirstName().startsWith("A");
+        Comparator<Person> findPersonComparator = Comparator.comparing(Person::getBirthDate);
+        List<Person> findAndSort_findPersonFirstNameASortedBirthdate = storage.findAndSort(findPersonFirstNameA, findPersonComparator);
+        findAndSort_findPersonFirstNameASortedBirthdate.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -168,7 +172,10 @@ public class Exercises {
      */
     public static void exercise12(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> findPersonBefore1950 = person -> person.getBirthDate().isBefore(LocalDate.parse("1950-01-01"));
+        Comparator<Person> findPersonComparator = Comparator.comparing(Person::getBirthDate).reversed();
+        List<Person> findAndSort_findPersonFirstNameASortedBirthdate = storage.findAndSort(findPersonBefore1950, findPersonComparator);
+        findAndSort_findPersonFirstNameASortedBirthdate.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -178,7 +185,9 @@ public class Exercises {
      */
     public static void exercise13(String message){
         System.out.println(message);
-        //Write your code here
+        Comparator<Person> findAllPersonAndSortComparator = Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName).thenComparing(Person::getBirthDate);
+        List<Person> Sort_FindAllPersons = storage.findAndSort(findAllPersonAndSortComparator);
+        Sort_FindAllPersons.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
